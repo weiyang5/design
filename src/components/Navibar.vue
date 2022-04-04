@@ -34,6 +34,15 @@ import screenfull from 'screenfull';
 import local from "@/store/local";
 export default {
   name: "Navibar",
+  data(){
+    return{
+    }
+  },
+  computed:{
+    account(){
+      return local.getUserInfo().account
+    }
+  },
   methods:{
     handleCollapse(){
       this.$emit('handleCollapse');

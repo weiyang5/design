@@ -22,11 +22,13 @@ const store=new Vuex.Store({
         login({commit},loginUser){
             return new Promise((resolve, reject)=>{
                 login(loginUser).then(res=>{
-                    commit('SET_TOKEN',res.data.token);
-                    commit('SET_USERINFO',res.data);
-                    local.setToken(res.data.token);
-                    local.setUserInfo(res.data);
-                    resolve(res)
+                    if(res) {
+                        commit('SET_TOKEN', res.data.token);
+                        commit('SET_USERINFO', res.data);
+                        local.setToken(res.data.token);
+                        local.setUserInfo(res.data);
+                        resolve(res)
+                    }
                 }).catch(error=>{
                     reject(error);
                 })
