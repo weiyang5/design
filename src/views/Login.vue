@@ -58,7 +58,17 @@ export default {
   },
   methods:{
     login(){
+      this.$refs['loginForm'].validate(valid=>{
+        if(valid){
 
+          this.$store.dispatch('login',this.form).then(res=>{
+            if(res.code==200){
+              this.$router.push('/index');
+            }
+          })
+
+        }
+      })
     }
   }
 }

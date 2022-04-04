@@ -1,6 +1,6 @@
 <template>
-  <el-header>
-    <span class="span-style">
+  <div class="header">
+    <span class="collapse" v-on:click="handleCollapse">
         <i class="el-icon-s-unfold"></i>
     </span>
     <div class="user-info">
@@ -26,17 +26,38 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-  </el-header>
+  </div>
 </template>
 
 <script>
+import screenfull from 'screenfull';
+import local from "@/store/local";
 export default {
-  name: "Navibar"
+  name: "Navibar",
+  methods:{
+    handleCollapse(){
+      this.$emit('handleCollapse');
+    },
+    handleFullScreen(){
+      screenfull.toggle();
+    },
+    handleCommand(type){
+      if(type === 'logout'){
+        this.$confirm('确定要退出吗？','退出提示',).then(()=>{
+          this.$router.push('/login');
+          local.clear()
+        }).catch(()=>{});
+      }
+      if(type === 'home'){
+        this.$router.push('/');
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
-.el-header{
+.header{
   height: 60px;
   background-color: #e0991e;
   width: 100%;
@@ -50,6 +71,10 @@ export default {
   width: 400px;
   padding-right: 20px;
   text-align: right;
+}
+.collapse{
+  cursor: pointer;
+  padding:0px 20px;
 }
 .user-info>i{
   cursor: pointer;
