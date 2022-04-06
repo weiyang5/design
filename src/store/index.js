@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {login} from  '@/api/login'
 import local from "@/store/local";
+import {queryMenus} from "@/api/menu";
 Vue.use(Vuex)
 
 const store=new Vuex.Store({
@@ -31,6 +32,13 @@ const store=new Vuex.Store({
                     }
                 }).catch(error=>{
                     reject(error);
+                })
+            })
+        },
+        getMenus({commit}){
+            return new Promise((resolve,reject)=>{
+                queryMenus().then(res=>{
+                    resolve(res);
                 })
             })
         }

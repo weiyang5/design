@@ -1,14 +1,14 @@
 <template>
   <el-container class="container">
-    <Sidebar :isCollapse="isCollapse"></Sidebar>
+    <Sidebar :isCollapse="isCollapse" @handleMenuItem="handleMenuItem"></Sidebar>
     <el-container>
       <el-header>
         <Navibar v-on:handleCollapse="handleCollapse"></Navibar>
       </el-header>
       <el-main>
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+        <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>{{menuName}}</el-breadcrumb-item>
         </el-breadcrumb>
         <router-view class="rv"></router-view>
       </el-main>
@@ -26,12 +26,16 @@ export default {
   },
   data(){
     return{
-      isCollapse:false
+      isCollapse:false,
+      menuName:''
     }
   },
   methods:{
     handleCollapse(){
       this.isCollapse=!this.isCollapse;
+    },
+    handleMenuItem(item){
+      this.menuName = item.name
     }
   }
 }
