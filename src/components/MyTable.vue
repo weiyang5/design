@@ -7,27 +7,18 @@
       :header-cell-style="{background:'#f2f2f2',height:'40px',padding:'0px'}"
       style="width: 100%">
     <el-table-column
+        v-if="isSelection"
         type="selection"
         width="50"
     >
-
     </el-table-column>
     <el-table-column
-        prop="id"
-        label="ID"
-        width="40">
-    </el-table-column>
-    <el-table-column
-        prop="userName"
-        label="用户名">
-    </el-table-column>
-    <el-table-column
-        prop="name"
-        label="姓名">
-    </el-table-column>
-    <el-table-column
-        prop="loginTime"
-        label="登录时间">
+        v-for="(item,index) in tableCols"
+        :prop="item.prop"
+        :label="item.label"
+        :width="item.width"
+        :key="index"
+        show-overflow-tooltip>
     </el-table-column>
   </el-table>
 </template>
@@ -41,11 +32,20 @@ export default {
     },
     tableCols:{
       type:Array,
+    },
+    isSelection:{
+      type:Boolean,
+      default:true,
+    }
+  },
+  data(){
+    return{
+      selection:[],
     }
   },
   methods:{
-    handleSelectionChange(){
-
+    handleSelectionChange(selection){
+      this.selection = selection;
     },
   },
 }

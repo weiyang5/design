@@ -1,30 +1,25 @@
 <template>
   <div>
-    <div style="height: 50px">
-      <el-form :inline="true" :model="form">
-        <el-form-item label="用户名">
-          <el-input v-model="params.userName" placeholder="按用户名查询"></el-input>
-        </el-form-item>
-        <el-form-item label="姓名">
-          <el-input v-model="params.name" placeholder="按关键字查询"></el-input>
-        </el-form-item>
-        <el-form-item >
-          <el-button @click="search" icon="el-icon-search">查询</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+<!--    <el-form :inline="true" :model="params">-->
+<!--      <template v-for="(item,index) in items">-->
+<!--        <template v-if="['text','number'].indexOf(item.type) !=-1">-->
+<!--          <el-form-item :label="item.label" :key="index">-->
+<!--            <el-input v-model="params[item.name]" :placeholder="item.placeholder"></el-input>-->
+<!--          </el-form-item>-->
+<!--        </template>-->
+<!--      </template>-->
+<!--      <el-form-item >-->
+<!--        <el-button @click="search" icon="el-icon-search">查询</el-button>-->
+<!--      </el-form-item>-->
+<!--    </el-form>-->
+    <my-query-form :form="params" :items="items" @search="search"></my-query-form>
     <div class="btn-style">
       <el-button size="small" type="primary" @click="create" round>新增</el-button>
       <el-button size="small" type="primary" @click="update" round>修改</el-button>
       <el-button size="small" type="warning" @click="del" round>删除</el-button>
     </div>
-    <MyTable :table-data="tableData" table-cols="tableCols"></MyTable>
-    <el-pagination
-        background
-        @current-change="handleCurrentChange"
-        layout="prev, pager, next,total"
-        :total=total>
-    </el-pagination>
+    <my-table ref="mutipTable" :tableData="tableData" :tableCols="tableCols"></my-table>
+    <MyPagination :page="params.page" :total="total" @handleCurrentChange="handleCurrentChange"></MyPagination>
     <Add v-if="add.visible" :param="add"></Add>
     <Edit v-if="edit.visible" :param="edit"></Edit>
     <div style="margin-top: 20px">
@@ -39,9 +34,12 @@ import Edit from "@/views/user/Edit";
 import {message} from "@/utils/message";
 import {del} from "@/api/user";
 import MyTable from "@/components/MyTable";
+import MyForm from "@/components/MyForm";
+import MyPagination from "@/components/MyPagination";
+import MyQueryForm from "@/components/MyQueryForm";
 export default {
   name : "User",
-  components: {Edit, Add,MyTable},
+  components: {MyQueryForm, Edit, Add,MyTable,MyPagination,MyForm},
   data() {
     return {
       total:0,
@@ -64,19 +62,25 @@ export default {
         form:null
       },
       selection:[],
-      form:{
-        userName:'',
-        name:''
-      }
+      items:[
+        {type:'text',label:'用户名',name:'userName',placeholder:'按用户名查询'},
+        {type:'text',label:'姓名',name:'name',placeholder:'按关键字查询'},
+      ],
+      tableCols: [
+        {prop:'id', label:'ID', width:80},
+        {prop:'userName', label:'用户名'},
+        {prop:'name', label:'姓名'},
+        {prop:'loginTime', label:'登录时间'},
+      ],
     }
   },
   mounted() {
     this.list({});
   },
   methods: {
-    handleCurrentChange(page){
-      console.log(page);
-      this.params.page=page;
+    handleCurrentChange(val){
+      this.params.page = val
+      console.log(this.params);
       this.list(this.params);
     },
     search(){
@@ -99,18 +103,19 @@ export default {
       this.edit.visible=false;
     },
     update(){
-
-      if(this.selection.length==1){
+      let selection = this.$refs['mutipTable'].selection;
+      if(selection.length==1){
         this.edit.visible=true;
-        this.edit.form=this.selection[0];
+        this.edit.form=selection[0];
       }else{
         message.warning('请选择一条数据进行修改')
       }
     },
     del(){
-      if(this.selection.length>0){
+      let selection = this.$refs['mutipTable'].selection;
+      if(selection.length>0){
         this.$confirm('是否确定删除','删除提示').then(()=>{
-          let list=this.selection.map(item=>item.id);
+          let list=selection.map(item=>item.id);
           let ids=list.join(',');
           console.log(ids)
           del(ids).then(res=>{

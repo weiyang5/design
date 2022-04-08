@@ -1,27 +1,30 @@
 <template>
   <el-dialog title="修改" :visible="param.visible" @close="param.close">
-    <el-form ref="form" :model="form" rules="rules" label-width="90px">
-      <el-form-item label="用户名" prop="userName">
-        <el-input v-model="form.userName" placeholder="请输入用户名"></el-input>
-      </el-form-item>
-      <el-form-item label="姓名" prop="name">
-        <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input v-model="form.password" placeholder="请输入密码"></el-input>
-      </el-form-item>
-      <el-form-item style="text-align: center">
-        <el-button icon="el-icon-refresh-right" type="primary">重置</el-button>
-        <el-button icon="el-icon-circle-check" @click="save" type="primary">保存</el-button>
-      </el-form-item>
-    </el-form>
+<!--    <el-form ref="form" :model="form" rules="rules" label-width="90px">-->
+<!--      <el-form-item label="用户名" prop="userName">-->
+<!--        <el-input v-model="form.userName" placeholder="请输入用户名"></el-input>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="姓名" prop="name">-->
+<!--        <el-input v-model="form.name" placeholder="请输入姓名"></el-input>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="密码" prop="password">-->
+<!--        <el-input v-model="form.password" placeholder="请输入密码"></el-input>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item style="text-align: center">-->
+<!--        <el-button icon="el-icon-refresh-right" type="primary">重置</el-button>-->
+<!--        <el-button icon="el-icon-circle-check" @click="save" type="primary">保存</el-button>-->
+<!--      </el-form-item>-->
+<!--    </el-form>-->
+    <MyForm ref="myForm" :rules="rules" :form="form" :items="items" :save="save"></MyForm>
   </el-dialog>
 </template>
 
 <script>
 import {update} from "@/api/user";
+import MyForm from "@/components/MyForm";
 export default {
   name: "Edit",
+  components:{MyForm},
   props:{
     param:{
       type:Object,
@@ -53,15 +56,14 @@ export default {
   },
   methods:{
     save(){
-      this.$refs['form'].validate(valid=>{
-        if(valid){
-          update(this.form).then(res=>{
-            this.$message.success(res.msg);
-            this.param.close();
-            this.param.callback();
-          })
-        }
-      })
+      let flag = this.$refs['myForm'].validateForm();
+      if(flag){
+        update(this.form).then(res=>{
+          this.$message.success(res.msg);
+          this.param.close();
+          this.param.callback();
+        })
+      }
     },
   }
 }

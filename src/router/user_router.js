@@ -15,11 +15,6 @@ export const userRouterMap = [
                 component:()=>import('@/views/dict/Dict'),
             },
             {
-                path:'/profession',
-                name:'profession',
-                component:()=>import('@/views/profession/Profession'),
-            },
-            {
                 path:'/company',
                 name:'company',
                 component:()=>import('@/views/company/Company'),
