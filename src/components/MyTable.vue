@@ -19,6 +19,10 @@
         :width="item.width"
         :key="index"
         show-overflow-tooltip>
+      <template slot-scope="scope">
+        <slot v-if="item.slot" :name="item.slot" :data="scope.row"></slot>
+        <span v-else>{{scope.row[item.prop]}}</span>
+      </template>
     </el-table-column>
   </el-table>
 </template>
