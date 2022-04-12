@@ -83,10 +83,19 @@
 
 <script>
 
+import Vue from 'vue'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+// use
+Vue.use(mavonEditor)
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
 import {upload} from "@/api/upload";
 
 export default {
   name: "RForm",
+  components:{Treeselect},
   props:{
     rules:{
       type:Object,
@@ -110,9 +119,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.items)
-    console.log(this.items)
-    console.log(this.items)
   },
   methods:{
     validateForm(){
