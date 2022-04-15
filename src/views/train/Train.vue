@@ -7,10 +7,7 @@
       <el-button size="small" type="warning" @click="del" round>删除</el-button>
     </div>
     <my-table ref="mutipTable" :tableData="tableData" :tableCols="tableCols">
-      <template slot="sex_slot" slot-scope="scope">
-        <span v-if="scope.data.sex==0">女</span>
-        <span v-else>男</span>
-      </template>
+
     </my-table>
     <MyPagination :page="params.page" :total="total" @handleCurrentChange="handleCurrentChange"></MyPagination>
     <Add v-if="add.visible" :param="add"></Add>
@@ -24,12 +21,12 @@
 import MyQueryForm from "@/components/MyQueryForm";
 import MyTable from "@/components/MyTable";
 import MyPagination from "@/components/MyPagination";
-import Add from "@/views/post/Add";
-import Edit from "@/views/post/Edit";
-import {del, query} from "@/api/post";
+import Add from "@/views/train/Add";
+import Edit from "@/views/train/Edit";
+import {del, query} from "@/api/train";
 import {message} from "@/utils/message";
 export default {
-  name: "Post",
+  name: "Train",
   components:{MyTable,MyQueryForm,MyPagination,Add,Edit},
   data() {
     return {
@@ -38,7 +35,6 @@ export default {
       multipleSelection: [],
       params:{
         name:'',
-        college:'',
         page:1
       },
       add:{
@@ -54,14 +50,15 @@ export default {
       },
       selection:[],
       items:[
-        {type:'text',label:'职位名称',name:'name',placeholder:'按关键字查询'},
+        {type:'text',label:'课程',name:'course',placeholder:'按课程查询'},
       ],
       tableCols:[
         {prop:'id', label:'ID', width:80},
-        {prop:'name', label:'职位名称'},
-        {prop:'education', label:'学历要求'},
-        {prop:'salary', label:'薪资水平'},
-        {prop:'description', label:'描述'},
+        {prop:'resumeId', label:'简历id'},
+        {prop:'startDate', label:'开始时间'},
+        {prop:'endDate', label:'结束时间'},
+        {prop:'company', label:'培训机构'},
+        {prop:'course', label:'培训课程'},
       ],
     }
   },

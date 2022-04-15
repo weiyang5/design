@@ -1,13 +1,13 @@
 export const companyRouterMap = [
     {
         path:'/index',
-        redirect:'/company_info',
+        redirect:'/company_detail',
         component:()=>import('@/views/Index'),
         children:[
             {
-                path:'/company_info',
-                name:'company_info',
-                component:()=>import('@/views/company/CompanyInfo'),
+                path:'/company_detail',
+                name:'company_detail',
+                component:()=>import('@/views/company/CompanyDetail'),
             },
             {
                 path:'/post',

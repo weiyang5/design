@@ -24,12 +24,12 @@
 import MyQueryForm from "@/components/MyQueryForm";
 import MyTable from "@/components/MyTable";
 import MyPagination from "@/components/MyPagination";
-import Add from "@/views/post/Add";
-import Edit from "@/views/post/Edit";
-import {del, query} from "@/api/post";
+import Add from "@/views/resume/Add";
+import Edit from "@/views/resume/Edit";
+import {del, query} from "@/api/resume";
 import {message} from "@/utils/message";
 export default {
-  name: "Post",
+  name: "Resume",
   components:{MyTable,MyQueryForm,MyPagination,Add,Edit},
   data() {
     return {
@@ -54,14 +54,15 @@ export default {
       },
       selection:[],
       items:[
-        {type:'text',label:'职位名称',name:'name',placeholder:'按关键字查询'},
+        {type:'text',label:'名称',name:'name',placeholder:'按名称查询'},
       ],
       tableCols:[
         {prop:'id', label:'ID', width:80},
-        {prop:'name', label:'职位名称'},
-        {prop:'education', label:'学历要求'},
-        {prop:'salary', label:'薪资水平'},
-        {prop:'description', label:'描述'},
+        {prop:'name', label:'名称'},
+        {prop:'jobStatus', label:'求职状态'},
+        {prop:'evaluate', label:'自我评价'},
+        {prop:'skill', label:'技能描述'},
+        {prop:'status', label:'状态'},
       ],
     }
   },

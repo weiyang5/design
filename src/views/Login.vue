@@ -45,9 +45,9 @@ export default {
   data(){
     return {
       form:{
-        account:'admin',
+        account:'zhangsan',
         password:'123456',
-        type:0,
+        type:2,
       },
       options:[{label:'管理员',value:0},{label:'企业',value:1},{label:'学生',value:2}],
       rules:{

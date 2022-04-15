@@ -1,13 +1,13 @@
 export const studentRouterMap = [
     {
         path:'/index',
-        redirect:'/student_info',
+        redirect:'/student_detail',
         component:()=>import('@/views/Index'),
         children:[
             {
-                path:'/student_info',
-                name:'student_info',
-                component:()=>import('@/views/student/StudentInfo'),
+                path:'/student_detail',
+                name:'student_detail',
+                component:()=>import('@/views/student/StudentDetail'),
             },
             {
                 path:'/resume',

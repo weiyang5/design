@@ -59,6 +59,7 @@
                 <el-upload
                     class="upload-demo"
                     action="string"
+                    list-type="picture"
                     :data="{name:item.name}"
                     :http-request="uploadImg"
                     :before-upload="beforeUpload"
@@ -94,7 +95,7 @@ import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import {upload} from "@/api/upload";
 
 export default {
-  name: "RForm",
+  name: "MyForm",
   components:{Treeselect},
   props:{
     rules:{
