@@ -4,7 +4,7 @@ import request from '@/utils/request'
 
 export function channel_tree(data) {
     return request({
-        url:'/f/channel/tree',
+        url:'/front/channel/tree',
         method:'post',
         data:data
     });
@@ -14,7 +14,7 @@ export function channel_tree(data) {
 
 export function channel_detail(id) {
     return request({
-        url:'/f/channel/detail',
+        url:'/front/channel/detail',
         method:'get',
         params: {id:id}
     });
@@ -22,7 +22,7 @@ export function channel_detail(id) {
 
 export function article_detail(id) {
     return request({
-        url:'/f/article/detail',
+        url:'/front/article/detail',
         method:'get',
         params: {id:id}
     });
@@ -31,7 +31,7 @@ export function article_detail(id) {
 
 export function article_query(data) {
     return request({
-        url:'/f/article/query',
+        url:'/front/article/query',
         method:'post',
         data:data
     });
@@ -40,7 +40,7 @@ export function article_query(data) {
 
 export function hot() {
     return request({
-        url:'/f/article/hot',
+        url:'/front/article/hot',
         method:'get',
     });
 }
@@ -49,7 +49,7 @@ export function hot() {
 
 export function post_query(data) {
     return request({
-        url:'/f/post/query',
+        url:'/front/post/query',
         method:'post',
         data:data
     });
@@ -60,7 +60,7 @@ export function post_query(data) {
 
 export function student_create(data) {
     return request({
-        url:'/f/reg/student_create',
+        url:'/front/reg/student_create',
         method:'post',
         data:data
     });
@@ -68,7 +68,7 @@ export function student_create(data) {
 
 export function company_create(data) {
     return request({
-        url:'/f/reg/company_create',
+        url:'/front/reg/company_create',
         method:'post',
         data:data
     });

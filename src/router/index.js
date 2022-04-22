@@ -5,17 +5,33 @@ import {userRouterMap} from "@/router/user_router";
 import {companyRouterMap} from "@/router/company_router";
 import local from "@/store/local";
 import {studentRouterMap} from "@/router/student_router";
+import Index from "@/front/Index"
 Vue.use(VueRouter)
 
 const constantRouterMap=[
     {
         path:'/',
-        redirect:'/login'
+        name:'首页',
+        component:Index
+    },{
+        path:'/list/:id',
+        name:'列表页面',
+        component:()=>import('@/front/List')
+    },
+    {
+        path:'/detail/:id',
+        name:'详情页面',
+        component:()=>import('@/front/Detail')
+    },
+    {
+        path:'/post_list',
+        name:'详情页面',
+        component:()=>import('@/front/PostList')
     },
     {
         path:'/login',
         name:'login',
-        component:Login
+        component:()=>import('@/views/Login')
     },
 ]
 let arr=[]
