@@ -25,7 +25,7 @@
               <div class="date">
                 <span>发布时间：{{article.createDate}}</span>
                 <span>作者：{{article.author}}</span>
-                <span>浏览量：{{article.views}}</span>
+                <span>浏览量：9595</span>
               </div>
               <div class="txt">
                 <mavon-editor :value="article.content"

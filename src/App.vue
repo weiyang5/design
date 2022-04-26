@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app"  v-title data-title="学生就业网">
     <router-view></router-view>
   </div>
 </template>

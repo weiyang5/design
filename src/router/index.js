@@ -20,12 +20,12 @@ const constantRouterMap=[
     },
     {
         path:'/detail/:id',
-        name:'详情页面',
+        name:'详情页面1',
         component:()=>import('@/front/Detail')
     },
     {
         path:'/post_list',
-        name:'详情页面',
+        name:'详情页面2',
         component:()=>import('@/front/PostList')
     },
     {
@@ -33,24 +33,19 @@ const constantRouterMap=[
         name:'login',
         component:()=>import('@/views/Login')
     },
+    {
+        path:'/reg',
+        name:'reg',
+        component:()=>import('@/front/Reg')
+    }
 ]
-let arr=[]
-if(local.getUserInfo()){
-    if(local.getUserInfo().type==0){
-        arr=[...constantRouterMap,...userRouterMap]
-    }
-    if(local.getUserInfo().type==1){
-        arr=[...constantRouterMap,...companyRouterMap]
-    }
-    if(local.getUserInfo().type==2){
-        arr=[...constantRouterMap,...studentRouterMap]
-    }
-}else{
-    arr=[...constantRouterMap]
-}
-
-const router =new VueRouter({
-    routes:arr
+const createRouter = ()=> new VueRouter({
+    routes:constantRouterMap
 })
-
+const  router = createRouter();
 export default router
+
+export function resetRouter() {
+    const newRouter = createRouter();
+    router.matcher =new createRouter().matcher
+}

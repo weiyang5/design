@@ -3,6 +3,10 @@ import Vuex from 'vuex'
 import {login} from  '@/api/login'
 import local from "@/store/local";
 import {queryMenus} from "@/api/menu";
+import router, {resetRouter} from "@/router";
+import {userRouterMap} from "@/router/user_router";
+import {companyRouterMap} from "@/router/company_router";
+import {studentRouterMap} from "@/router/student_router";
 Vue.use(Vuex)
 
 const store=new Vuex.Store({
@@ -28,6 +32,16 @@ const store=new Vuex.Store({
                         commit('SET_USERINFO', res.data);
                         local.setToken(res.data.token);
                         local.setUserInfo(res.data);
+                        resetRouter()
+                        if(res.data.type == 0){//管理员
+                            router.addRoutes(userRouterMap)
+                        }
+                        if(res.data.type == 1){//企业
+                            router.addRoutes(companyRouterMap)
+                        }
+                        if(res.data.type == 2){//学生
+                            router.addRoutes(studentRouterMap)
+                        }
                         resolve(res)
                     }
                 }).catch(error=>{

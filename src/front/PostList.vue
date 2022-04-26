@@ -74,17 +74,23 @@ export default {
     return {
       posts:[],
       total:0,
+      params:{
+        name:'',
+        page:1
+      },
     }
   },
   mounted() {
-    this.getPostList();
+    this.getPostList({});
   },
   methods:{
-    handleCurrentChange(page){
-      console.log(page)
+    handleCurrentChange(val){
+      this.params.page = val
+      console.log(this.params);
+      this.getPostList(this.params);
     },
-    getPostList(){
-      post_query({}).then(res=>{
+    getPostList(params){
+      post_query(params).then(res=>{
         this.posts = res.data;
         this.total = res.total;
         console.log(this.posts)

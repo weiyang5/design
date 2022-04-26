@@ -1,6 +1,6 @@
 
 <template>
-  <div v-title>
+  <div v-title data-title="学生就业网">
     <Header></Header>
 
     <!--焦点区-->
@@ -14,9 +14,9 @@
         <el-col :span="8">
           <el-card>
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide><img src="https://www.freecatphotoapp.com/your-image.jpg"> </swiper-slide>
-              <swiper-slide><img src="https://www.freecatphotoapp.com/your-image.jpg"> </swiper-slide>
-              <swiper-slide><img src="https://www.freecatphotoapp.com/your-image.jpg"> </swiper-slide>
+              <swiper-slide><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.fr-trading.com%2F0%2F5_1019_1780158_1000_1000.jpg%3Ft%3D1575017026&refer=http%3A%2F%2Fimg1.fr-trading.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1653234718&t=154940c75fd78a02b22b86dde80e0388"  width="350px" height="360px"> </swiper-slide>
+              <swiper-slide><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F052420110515%2F200524110515-2-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1653234587&t=daf50faa20278bda29abf0e8c4412637" width="350px" height="360px"> </swiper-slide>
+              <swiper-slide><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F4k%2Fs%2F02%2F2109250135543096-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1653234587&t=1f1962f2f97c332465979dada2080de5" width="350px" height="360px"> </swiper-slide>
               <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
               <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
               <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -42,11 +42,6 @@
         </el-col>
       </el-row>
     </div>
-
-    <!--广告图片区-->
-<!--    <div class="main mar-20">-->
-<!--      <img src="../assets/images/middle.gif" width="1200px">-->
-<!--    </div>-->
 
 
     <!--三层区域-->

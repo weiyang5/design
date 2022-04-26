@@ -60,7 +60,7 @@ export function post_query(data) {
 
 export function student_create(data) {
     return request({
-        url:'/front/reg/student_create',
+        url:'/front/regist/student_create',
         method:'post',
         data:data
     });
@@ -68,7 +68,7 @@ export function student_create(data) {
 
 export function company_create(data) {
     return request({
-        url:'/front/reg/company_create',
+        url:'/front/regist/company_create',
         method:'post',
         data:data
     });
