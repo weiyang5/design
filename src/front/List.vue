@@ -12,7 +12,7 @@
     <div class="main mar-20">
       <el-row :gutter="15">
         <el-col :span="16">
-          <el-card style="min-height: 1200px;overflow:visible;">
+          <el-card style="height: auto;overflow:visible;">
             <div slot="header" class="clearfix">
               <span>文章列表</span>
             </div>
@@ -28,9 +28,9 @@
             </ul>
             <el-pagination
                 background
-                layout="prev, pager, next"
-                :current-page="page"
+                :current-page="params.page"
                 @current-change="handleCurrentChange"
+                layout="prev, pager, next "
                 :total="total">
             </el-pagination>
           </el-card>
@@ -58,8 +58,11 @@ export default {
     return {
       articles:[],
       channel:{},
-      page:1,
       total:0,
+      params:{
+        channelId:this.$route.params.id,
+        page:1
+      },
     }
   },
   mounted() {
@@ -67,14 +70,14 @@ export default {
     this.getArticles({channelId:this.$route.params.id})
   },
   beforeRouteUpdate (to, from, next) {
-    this.page = 1;
+    this.params.page = 1;
     this.getArticles({channelId:to.params.id})
     this.getChannel(to.params.id)
     next();
   },
   methods:{
     handleCurrentChange(val){
-      this.page =val;
+      this.params.page = val;
       let params  = {channelId:this.channel.id,page:this.page}
       this.getArticles(params)
     },

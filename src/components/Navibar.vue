@@ -15,10 +15,6 @@
             <i class="el-icon-s-home"></i>
             网站首页
           </el-dropdown-item>
-          <el-dropdown-item command="password">
-            <i class="el-icon-edit-outline"></i>
-            修改密码
-          </el-dropdown-item>
           <el-dropdown-item command="logout">
             <i class="el-icon-s-unfold"></i>
             退出登录

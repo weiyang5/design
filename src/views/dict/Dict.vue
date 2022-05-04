@@ -56,7 +56,6 @@ export default {
         {prop:'dictKey', label:'字典名称'},
         {prop:'dictVal', label:'字典值'},
         {prop:'status', label:'状态',slot:'slot_status'},
-        {prop:'sort', label:'序号',width:'100'},
       ],
       add:{
         visible:false,
@@ -76,7 +75,7 @@ export default {
       this.typeTableData = res.data;
       this.selectTypeId = this.typeTableData[0].id;
     })
-    this.list({typeId:this.selectTypeId})
+    this.list({typeId:this.selectTypeId?null:1})
   },
   methods:{
     create(){

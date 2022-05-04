@@ -7,9 +7,9 @@
       <el-button size="small" type="warning" @click="del" round>删除</el-button>
     </div>
     <my-table ref="mutipTable" :tableData="tableData" :tableCols="tableCols">
-      <template slot="sex_slot" slot-scope="scope">
-        <span v-if="scope.data.sex==0">女</span>
-        <span v-else>男</span>
+      <template slot="status_slot" slot-scope="scope">
+        <span v-if="scope.data.status==0">关闭</span>
+        <span v-else>开放</span>
       </template>
     </my-table>
     <MyPagination :page="params.page" :total="total" @handleCurrentChange="handleCurrentChange"></MyPagination>
@@ -62,7 +62,7 @@ export default {
         {prop:'jobStatus', label:'求职状态'},
         {prop:'evaluate', label:'自我评价'},
         {prop:'skill', label:'技能描述'},
-        {prop:'status', label:'状态'},
+        {prop:'status', label:'状态',slot:'status_slot'},
       ],
     }
   },

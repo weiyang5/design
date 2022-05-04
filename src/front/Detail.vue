@@ -16,7 +16,7 @@
     <div class="main mar-20">
       <el-row :gutter="15">
         <el-col :span="16">
-          <el-card style="min-height: 1000px">
+          <el-card style="height:auto;min-height: 800px">
             <div slot="header" class="clearfix">
               <span>文章正文</span>
             </div>

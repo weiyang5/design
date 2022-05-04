@@ -36,8 +36,7 @@ export default {
       },
       items:[
         {type:'text',label:'标题',prop:'title',name:'title',placeholder:'请输入标题'},
-        {type:'treeselect',label:'栏目',prop:'channelId',name:'channelId',placeholder:'请输选择栏目', options:[]},
-        {type:'file',label:'标题图',prop:'titleImg',name:'titleImg',placeholder:'上传图片'},
+        {type:'treeselect',label:'栏目',prop:'channelId',name:'channelId',placeholder:'请输入选择栏目', options:[]},
         {type:'text',label:'摘要',prop:'summary',name:'summary',placeholder:'请输入摘要'},
         {type:'text',label:'作者',prop:'author',name:'author',placeholder:'请录入作者'},
         {type:'text',label:'外链',prop:'url',name:'url',placeholder:'请输入外链'},

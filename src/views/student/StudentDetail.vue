@@ -12,6 +12,14 @@ export default {
   name: "StudentDetail",
   components: {MyForm},
   data(){
+    let validatePhone=(rule,value,callback)=> {
+      let phone=/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$/
+      if(phone.test(value)==false){
+        callback(new Error('请输入正确的手机号'));
+      }else{
+        callback();
+      }
+    }
     return{
       pic:null,
       form:{
@@ -27,6 +35,7 @@ export default {
       },
       rules:{
         name:[{required:true,message:'必填项不能为空'}],
+        phone:[{required:true,validator:validatePhone}],
       },
       items:[
         {type:'text',label:'姓名',prop:'name',name:'name',placeholder:'请输入名称'},

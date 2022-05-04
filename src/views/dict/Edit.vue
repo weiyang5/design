@@ -40,7 +40,6 @@ export default {
       items:[
         {type:'text',label:'字典名称',prop:'dictKey',name:'dictKey',placeholder:'请录入字典名称'},
         {type:'text',label:'字典值',prop:'dictVal',name:'dictVal',placeholder:'请录入字典值'},
-        {type:'text',label:'序号',prop:'sort',name:'sort',placeholder:'请录入序号'},
         {
           type:'select',label:'状态',prop:'status',name:'status',placeholder:'请选择状态',
           options:[{value:0,label:'正常'},{value:1,label:'删除'}]

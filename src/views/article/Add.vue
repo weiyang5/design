@@ -7,7 +7,7 @@
 <script>
 import {create} from "@/api/article";
 import MyForm from "@/components/MyForm";
-import {tree} from "@/api/article";
+import {tree} from "@/api/channel";
 export default {
   name: "Add",
   components:{MyForm},
@@ -35,8 +35,7 @@ export default {
       },
       items:[
         {type:'text',label:'标题',prop:'title',name:'title',placeholder:'请输入标题'},
-        {type:'treeselect',label:'栏目',prop:'channelId',name:'channelId',placeholder:'请输选择栏目', options:[]},
-        {type:'file',label:'标题图',prop:'titleImg',name:'titleImg',placeholder:'上传图片'},
+        {type:'treeselect',label:'栏目',prop:'channelId',name:'channelId',placeholder:'请输入选择栏目', options:[]},
         {type:'text',label:'摘要',prop:'summary',name:'summary',placeholder:'请输入摘要'},
         {type:'text',label:'作者',prop:'author',name:'author',placeholder:'请录入作者'},
         {type:'text',label:'外链',prop:'url',name:'url',placeholder:'请输入外链'},
@@ -54,7 +53,7 @@ export default {
       tree().then(res=>{
         console.log(res.data);
         this.items.forEach(item=>{
-          if(item.type=='treeselect' && item.name == 'parentId'){
+          if(item.type=='treeselect' && item.name == 'channelId'){
             item.options= res.data;
           }
         })
@@ -65,11 +64,6 @@ export default {
       if(flag){
         console.log(this.form)
         let param = this.form;
-        if(this.form.single){
-          param.single ='Y';
-        }else{
-          param.single ='N';
-        }
         create(param).then(res=>{
           this.$message.success(res.msg);
           this.param.close();

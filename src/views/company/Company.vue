@@ -2,14 +2,14 @@
   <div>
     <my-query-form :form="params" :items="items" @search="search"></my-query-form>
     <div class="btn-style">
-      <el-button size="small" type="primary" @click="create" round>新增</el-button>
-      <el-button size="small" type="primary" @click="update" round>修改</el-button>
+      <el-button size="small" type="primary" @click="update" round>审核</el-button>
       <el-button size="small" type="warning" @click="del" round>删除</el-button>
     </div>
     <my-table ref="mutipTable" :tableData="tableData" :tableCols="tableCols">
-      <template slot="sex_slot" slot-scope="scope">
-        <span v-if="scope.data.sex==0">女</span>
-        <span v-else>男</span>
+      <template slot="slot_status" slot-scope="scope">
+        <el-tag v-if="scope.data.status==0" size="mini" >待审核</el-tag>
+        <el-tag v-if="scope.data.status==1" type="success" size="mini" >审核通过</el-tag>
+        <el-tag v-if="scope.data.status==2" type="danger" size="mini" >审核拒绝</el-tag>
       </template>
     </my-table>
     <MyPagination :page="params.page" :total="total" @handleCurrentChange="handleCurrentChange"></MyPagination>
@@ -66,6 +66,7 @@ export default {
         {prop:'email', label:'邮箱'},
         {prop:'addr', label:'地址'},
         {prop:'size', label:'规模'},
+        {prop:'status', label:'状态',slot:'slot_status'},
       ],
     }
   },

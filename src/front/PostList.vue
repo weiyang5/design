@@ -18,6 +18,7 @@
             <div slot="header" class="clearfix">
               <span>职位搜索</span>
             </div>
+            <my-query-form :form="params" :items="items" @search="search"></my-query-form>
             <ul class="post-list">
               <li v-for="(item,index) in posts" :key="index">
                 <a href="#">
@@ -66,10 +67,11 @@ import {send_create} from "@/api/send";
 import {favor_create} from "@/api/favor";
 import local from "@/store/local";
 import {message} from "@/utils/message";
+import MyQueryForm from "@/components/MyQueryForm";
 
 export default {
   name: "Index",
-  components: {Hot, Footer, Header},
+  components: {MyQueryForm, Hot, Footer, Header},
   data(){
     return {
       posts:[],
@@ -78,6 +80,9 @@ export default {
         name:'',
         page:1
       },
+      items:[
+        {type:'text',label:'职位',name:'name',placeholder:'按职位关键字搜索'},
+      ],
     }
   },
   mounted() {
@@ -96,12 +101,15 @@ export default {
         console.log(this.posts)
       });
     },
+    search(){
+      this.getPostList(this.params);
+    },
     send(postId,companyId){
       if(local.getToken()){
         if(local.getUserInfo().type == 2){
           //执行申请
           send_create({postId:postId,companyId:companyId}).then(res=>{
-            message.success(res.msg);
+            message.success("投递简历成功");
           })
         }else{
           message.error("非学生登录不能申请");

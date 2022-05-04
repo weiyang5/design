@@ -144,6 +144,7 @@ footer ul::after {
     clear: both;
     font-size: 15px;
     line-height: 30px;
+    height: auto;
 }
 .hot{
     list-style: none;
